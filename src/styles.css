@@ -1796,7 +1796,32 @@ ul {
 @media (max-width: 819px) {
   /* the boombox bubble: smaller, and moved over so it sits above the boombox instead of across the figure */
   .bubble {
-    left: 46px;
-    font-size: 0.84rem;
+    left: 32px;
+    gap: 0.45em;
+    padding: 0.34em 0.8em 0.34em 0.4em;
+    border-width: 2px;
+    font-size: 0.66rem;
+    filter: drop-shadow(2px 3px 0 var(--ink)) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5));
+  }
+  .bubble::after {
+    left: 14px;
+    bottom: -7px;
+    width: 10px;
+    height: 10px;
+    border-width: 2px;
+  }
+  /* it is small now, so give it a bigger invisible area to tap */
+  .bubble::before {
+    content: '';
+    position: absolute;
+    inset: -9px;
+  }
+  .bubble__badge svg {
+    width: 9px;
+    height: 9px;
+    margin-left: 1px;
+  }
+  .bubble__ping {
+    border-width: 2px;
   }
 }
