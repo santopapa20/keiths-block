@@ -17,7 +17,7 @@ export function Atmosphere() {
   const C = useMemo(
     () => ({
       hemiSkyN: new THREE.Color('#6a58c8'),
-      hemiSkyD: new THREE.Color('#d9edff'),
+      hemiSkyD: new THREE.Color('#c4dcf5'),
       hemiGndN: new THREE.Color('#2a1638'),
       hemiGndD: new THREE.Color('#8a7358'),
       sunN: new THREE.Color('#9fb2ff'),
@@ -33,10 +33,10 @@ export function Atmosphere() {
     const m = env.mix
     hemi.current.color.lerpColors(C.hemiSkyD, C.hemiSkyN, m)
     hemi.current.groundColor.lerpColors(C.hemiGndD, C.hemiGndN, m)
-    hemi.current.intensity = lerp(1.5, 1.05, m)
+    hemi.current.intensity = lerp(1.2, 1.05, m)
     scene.environmentIntensity = lerp(0.9, 0.7, m)
     sun.current.color.lerpColors(C.sunD, C.sunN, m)
-    sun.current.intensity = lerp(3.4, 1.9, m)
+    sun.current.intensity = lerp(2.6, 1.9, m)
     sun.current.position.lerpVectors(C.sunPosD, C.sunPosN, m)
   })
 

@@ -51,7 +51,7 @@ const skyFrag = /* glsl */ `
       vec3 right = normalize(cross(uOrb, uUp));
       vec3 up = cross(right, uOrb);
       vec2 p = vec2(dot(d, right), dot(d, up));
-      float sun = (1.0 - smoothstep(0.022, 0.03, ang)) * 2.2 + exp(-ang * 9.0) * 0.45;
+      float sun = (1.0 - smoothstep(0.017, 0.021, ang)) * 1.25 + exp(-ang * 14.0) * 0.2;
       float moon = (1.0 - smoothstep(0.019, 0.021, length(p))) * smoothstep(0.016, 0.019, length(p - vec2(0.009, 0.006))) * 1.8 + exp(-ang * 24.0) * 0.28;
       col += mix(vec3(1.0, 0.92, 0.72) * sun, vec3(1.0, 0.95, 0.86) * moon, uMix);
     }
@@ -407,28 +407,28 @@ export function Vista() {
   const C = useMemo(
     () => ({
       zenithN: new THREE.Color('#070418'),
-      zenithD: new THREE.Color('#2b78d4'),
+      zenithD: new THREE.Color('#1f63bd'),
       midN: new THREE.Color('#2a0f5c'),
-      midD: new THREE.Color('#62b0f0'),
+      midD: new THREE.Color('#3f8fdc'),
       glowN: new THREE.Color('#d61f8c'),
-      glowD: new THREE.Color('#f6dfc8'),
+      glowD: new THREE.Color('#e9b98c'),
       deepN: new THREE.Color('#120830'),
       deepD: new THREE.Color('#0b4fa8'),
       seaN: new THREE.Color('#2a1560'),
-      seaD: new THREE.Color('#2187d6'),
+      seaD: new THREE.Color('#1b74c2'),
       shallowN: new THREE.Color('#12a8c4'),
-      shallowD: new THREE.Color('#3fd9d2'),
+      shallowD: new THREE.Color('#2bb5bd'),
       glintN: new THREE.Color('#ff7ac4'),
-      glintD: new THREE.Color('#ffffff'),
+      glintD: new THREE.Color('#bcd9f5'),
       fogN: new THREE.Color('#8a2a8e'),
-      fogD: new THREE.Color('#d5e6ee'),
+      fogD: new THREE.Color('#8fb9df'),
       landN: new THREE.Color('#6a4fb0'),
-      landD: new THREE.Color('#ffffff'),
+      landD: new THREE.Color('#b9c4b4'),
       cloudN: new THREE.Color('#6a4cb4'),
-      cloudD: new THREE.Color('#ffffff'),
+      cloudD: new THREE.Color('#d2dbe8'),
       cloudGlowN: new THREE.Color('#250a36'),
       steelN: new THREE.Color('#3a2a5a'),
-      steelD: new THREE.Color('#eef1f5'),
+      steelD: new THREE.Color('#c9d1dc'),
       black: new THREE.Color('#000000'),
     }),
     [],
@@ -519,7 +519,7 @@ export function Vista() {
     sky.uniforms.uMid.value.lerpColors(C.midD, C.midN, m)
     sky.uniforms.uGlow.value.lerpColors(C.glowD, C.glowN, m)
     sky.uniforms.uMix.value = m
-    sky.uniforms.uFall.value = THREE.MathUtils.lerp(26, 22, m)
+    sky.uniforms.uFall.value = THREE.MathUtils.lerp(30, 22, m)
 
     sea.uniforms.uTime.value = t
     sea.uniforms.uDeep.value.lerpColors(C.deepD, C.deepN, m)
@@ -540,7 +540,7 @@ export function Vista() {
     lightsMat.uniforms.uPx.value = px
     lightsMat.uniforms.uOpacity.value = m
     townMat.uniforms.uPx.value = px * 0.6
-    townMat.uniforms.uOpacity.value = (1 - m) * 0.9
+    townMat.uniforms.uOpacity.value = (1 - m) * 0.7
     starMat.uniforms.uTime.value = t
     starMat.uniforms.uPx.value = gl.getPixelRatio()
     starMat.uniforms.uOpacity.value = THREE.MathUtils.smoothstep(m, 0.4, 1)
