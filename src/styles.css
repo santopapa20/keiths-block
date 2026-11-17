@@ -1922,3 +1922,167 @@ ul {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.16) 55%, transparent);
   }
 }
+
+/* ───────────── day theme ─────────────
+   Night is dark glass with neon accents. Day is pale frosted glass with deep navy text and
+   deeper accents, so every label stays readable over a bright sky and sea. The switch is done
+   through the colour variables; the rules below only cover colours that were written out. */
+.app {
+  color: var(--text);
+}
+.app.is-day {
+  --glass: rgba(255, 255, 255, 0.9);
+  --glass-soft: rgba(255, 255, 255, 0.78);
+  --line: rgba(22, 30, 72, 0.16);
+  --text: #131a3d;
+  --muted: #485480;
+  --pink: #e6187f;
+  --cyan: #0a7d96;
+  --gold: #9a6200;
+  --green: #17964f;
+}
+/* the loading screen and the maroon school card stay dark in both modes */
+.loader,
+.is-day .school {
+  --text: #f5f1ff;
+  --muted: #cbc3e2;
+  --pink: #ff2d95;
+  --cyan: #2de2e6;
+  --gold: #ffc233;
+  color: var(--text);
+}
+
+/* top bar */
+.is-day .nav__links {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 0 0 1px var(--line);
+}
+.is-day .nav__links button {
+  color: #3a4470;
+}
+.is-day .nav__links button:hover {
+  color: var(--text);
+  background: rgba(22, 30, 72, 0.07);
+}
+.is-day .nav__links button.is-active,
+.is-day .nav__links button.is-active:hover {
+  color: #16041a;
+  background: var(--pink);
+}
+.is-day .icon-btn.is-on {
+  color: #ffffff;
+}
+
+/* headline */
+.is-day .hero__name {
+  color: var(--text);
+}
+.is-day .hero__role {
+  color: var(--text);
+}
+.is-day .hero__role span {
+  color: var(--muted);
+}
+.is-day .hero-cta__hint {
+  color: var(--text);
+  text-shadow: none;
+}
+
+/* floating labels on the block */
+.is-day .hotspot {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 0 0 1px var(--line), 0 6px 18px -6px rgba(20, 40, 90, 0.45);
+}
+
+/* the info panel */
+.is-day .panel {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 248, 255, 0.95) 42%, rgba(232, 240, 252, 0.96) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px var(--line),
+    0 30px 80px -20px rgba(20, 40, 90, 0.45);
+}
+.is-day .panel__body {
+  scrollbar-color: rgba(22, 30, 72, 0.3) transparent;
+}
+.is-day .panel__foot {
+  background: rgba(22, 30, 72, 0.05);
+}
+.is-day .panel__foot button:hover {
+  background: rgba(22, 30, 72, 0.08);
+}
+.is-day .panel__grip i {
+  background: rgba(22, 30, 72, 0.3);
+}
+.is-day .chips li,
+.is-day .facts div,
+.is-day .job,
+.is-day .work,
+.is-day .certs li,
+.is-day .contact-card {
+  background: rgba(22, 30, 72, 0.055);
+}
+.is-day .chips--small li {
+  color: #2c3560;
+}
+.is-day .tone-cyan .chips li {
+  box-shadow: 0 0 0 1px rgba(10, 125, 150, 0.45) inset;
+}
+.is-day .tone-pink .chips li {
+  box-shadow: 0 0 0 1px rgba(230, 24, 127, 0.4) inset;
+}
+.is-day .tone-gold .chips li {
+  box-shadow: 0 0 0 1px rgba(154, 98, 0, 0.45) inset;
+}
+.is-day .soon {
+  border-color: rgba(154, 98, 0, 0.55);
+  background: repeating-linear-gradient(-45deg, rgba(154, 98, 0, 0.08) 0 14px, transparent 14px 28px);
+}
+.is-day .certs__cup {
+  background: rgba(154, 98, 0, 0.12);
+  box-shadow: 0 0 0 1px rgba(154, 98, 0, 0.4) inset;
+}
+.is-day .form input,
+.is-day .form textarea {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(22, 30, 72, 0.24);
+}
+.is-day .form input::placeholder,
+.is-day .form textarea::placeholder {
+  color: #7b84a6;
+}
+
+@media (max-width: 819px) {
+  /* phones: the shade behind the buttons is pale by day, and the hint is plain dark text */
+  .is-day .hero::before {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.72) 18%, rgba(255, 255, 255, 0.36) 55%, transparent);
+  }
+  .is-day .hero-cta__hint {
+    color: #2c3560;
+    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
+  }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .app.is-day {
+    --glass: #ffffff;
+    --glass-soft: #ffffff;
+    --line: rgba(22, 30, 72, 0.4);
+  }
+  .is-day .panel {
+    background: #ffffff;
+  }
+}
+/* the dark day logo gets a pale halo, so it still reads when a dark building is behind it */
+.is-day .nav__logo {
+  color: var(--text);
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(255, 255, 255, 0.9),
+    0 0 22px rgba(255, 255, 255, 0.7);
+}
+/* the school card is see-through maroon, which goes pale over a white panel: make it solid by day */
+.is-day .school {
+  background: linear-gradient(140deg, #8a2331, #4d1220);
+  box-shadow: 0 0 0 1px rgba(255, 194, 51, 0.55) inset, 0 10px 24px -14px rgba(77, 18, 32, 0.8);
+}
+.is-day .certs__cup {
+  color: var(--gold);
+}
