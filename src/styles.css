@@ -1825,3 +1825,94 @@ ul {
     border-width: 2px;
   }
 }
+
+/* ───────────── phone pass 3: a cleaner home screen ───────────── */
+@media (max-width: 819px) {
+  /* The row of section links only appears once the visitor has stepped into the block.
+     On the home screen the top bar is just the logo and the tools. */
+  .nav__links {
+    max-height: 60px;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease,
+      padding 0.4s ease;
+  }
+  .nav.is-home .nav__links {
+    max-height: 0;
+    padding-block: 0;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: none;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease,
+      padding 0.4s ease,
+      visibility 0s 0.4s;
+  }
+
+  /* headline stack: status chip, name, role — then the block — then the buttons */
+  .hero {
+    top: calc(max(10px, env(safe-area-inset-top)) + 62px);
+    gap: 8px;
+  }
+  .hero__eyebrow {
+    padding: 0.34em 0.9em;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+  }
+  .hero__role {
+    order: 3;
+    margin-top: 2px;
+    padding: 0.36em 1.05em;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+  }
+  /* only the role itself on phones; the tech list lives in the Skills section */
+  .hero__role span {
+    display: none;
+  }
+  .hero-cta {
+    order: 4;
+    margin-top: auto;
+    gap: 8px;
+  }
+  /* the hint is a quiet line of text, not another pill */
+  .hero-cta__hint {
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-shadow: 0 1px 8px rgba(6, 4, 26, 0.9);
+  }
+  /* a soft shade behind the buttons so they read cleanly over the street */
+  .hero::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: -20px;
+    height: 170px;
+    background: linear-gradient(to top, rgba(8, 5, 20, 0.9) 18%, rgba(8, 5, 20, 0.55) 55%, transparent);
+    pointer-events: none;
+  }
+  .stage::after {
+    height: 120px;
+  }
+
+  /* smaller floating labels: seven of them share a small screen */
+  .hotspot {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    padding: 0.3em 0.7em 0.22em 0.5em;
+  }
+  .hotspot i {
+    width: 5px;
+    height: 5px;
+  }
+}

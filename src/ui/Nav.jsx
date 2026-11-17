@@ -37,7 +37,7 @@ export default function Nav() {
   }, [section])
 
   return (
-    <nav className="nav" aria-label="Sections">
+    <nav className={`nav ${section === 'home' ? 'is-home' : ''}`} aria-label="Sections">
       <button type="button" className="nav__logo" onClick={() => setSection('home')} aria-label="Back to the block">
         Keith<span>.</span>
       </button>
