@@ -5,6 +5,10 @@ A 3D interactive portfolio: a floating city block where every building or prop i
 
 Built with Vite, React, three.js and React Three Fiber.
 
+**Live site:** https://santopapa20.github.io/keiths-block/
+
+Every push to `main` rebuilds the site and publishes it (see `.github/workflows/deploy.yml`).
+
 ## Run it
 
 ```bash
