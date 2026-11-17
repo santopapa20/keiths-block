@@ -7,13 +7,15 @@ const ids = SECTIONS.map((s) => s.id)
 // 0 = fine detail hidden too. Add ?quality=high, ?quality=medium or ?quality=low to the
 // address to pin one; without it the site measures the frame rate and decides by itself.
 const wanted = typeof window === 'undefined' ? null : new URLSearchParams(window.location.search).get('quality')
+// Add ?time=day to the address to open in daylight instead of at night.
+const startInDay = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('time') === 'day'
 const TIERS = { low: 0, medium: 1, high: 2 }
 const locked = wanted in TIERS
 const startTier = locked ? TIERS[wanted] : 1
 
 export const useStore = create((set, get) => ({
   section: 'home',
-  night: true,
+  night: !startInDay,
   rain: false,
   music: false, // is the boombox playing? (switched through toggleMusic in sound.js)
   ready: false, // scene built AND all Tripo models loaded: the loading screen lifts

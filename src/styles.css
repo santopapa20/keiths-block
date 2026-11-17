@@ -1916,3 +1916,9 @@ ul {
     height: 5px;
   }
 }
+@media (max-width: 819px) {
+  /* by day the logo and the name are dark, so the shade behind the top bar is a pale haze instead */
+  .is-day .stage::after {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.16) 55%, transparent);
+  }
+}

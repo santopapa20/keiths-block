@@ -71,7 +71,7 @@ export default function Scene() {
     <Canvas
       shadows
       dpr={dpr}
-      camera={{ fov: 30, near: 0.5, far: 900, position: [0, 46, 78] }}
+      camera={{ fov: 30, near: 0.5, far: 2600, position: [0, 46, 78] }}
       gl={{ antialias: false, powerPreference: 'high-performance' }}
     >
       {/* Auto quality: starts in the middle tier, steps up when the frame rate is
