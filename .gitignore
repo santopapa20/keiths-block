@@ -1,0 +1,12 @@
+node_modules
+dist
+
+# working copies of the 3D models that the site does not load
+models-compressed
+models-unused
+
+# local tooling and OS files
+.claude
+.DS_Store
+Thumbs.db
+*.log
