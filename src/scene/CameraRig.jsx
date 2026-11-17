@@ -39,8 +39,8 @@ export function CameraRig() {
     // `room` is the share of the width the block may use; 1.62 keeps it from outgrowing the height.
     const room = split ? 0.62 : 1
     let pull = home ? clamp(Math.max(1.62, (72 / (aspect * room) + 13.5) / 39.6), 1.05, 4.5) : clamp(1.7 / aspect, 1.18, 3.2)
-    // Phones: showing all 30 units would make the block tiny, so show about 20 and let the visitor swipe.
-    if (home && mobile) pull = clamp(10 / (0.268 * aspect) / 39.6, 1.15, 2.4)
+    // Phones: showing all 30 units would make the block tiny, so show about 22 and let the visitor swipe.
+    if (home && mobile) pull = clamp(11.2 / (0.268 * aspect) / 39.6, 1.15, 2.6)
     v.wantPos.sub(v.wantLook).multiplyScalar(pull).add(v.wantLook)
 
     if (home && mobile) {
@@ -63,14 +63,14 @@ export function CameraRig() {
     // Shift the picture: left when the panel is open on desktop,
     // up when the bottom sheet is open on mobile, slightly down on the hero.
     let ox = 0
-    let oy = -size.height * (mobile ? 0.09 : 0.1) // leave sky for the headline
+    let oy = -size.height * (mobile ? 0.11 : 0.1) // leave sky for the headline
     if (split) {
       ox = -size.width * 0.185 // slide the block into the right-hand side
       oy = -size.height * 0.02
     }
     if (!home) {
       if (mobile) {
-        oy = size.height * 0.2
+        oy = size.height * 0.17 // the bottom sheet covers the lower half
       } else {
         ox = Math.min(470, size.width * 0.42) / 2
         oy = 0

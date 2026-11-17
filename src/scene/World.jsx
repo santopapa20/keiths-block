@@ -1,6 +1,7 @@
 // Lays out the whole block. Positions are in world units; x runs left→right,
 // z runs back→front (the street runs along x between z = -1 and z = 4).
-import { useEffect, useRef } from 'react'
+import * as THREE from 'three'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import { useStore } from '../store.js'
@@ -42,9 +43,25 @@ function Hotspot({ s }) {
   const hot = useStore((st) => st.hovered === s.id)
   const setSection = useStore((st) => st.setSection)
   const setHovered = useStore((st) => st.setHovered)
+  const btn = useRef()
+  const p = useMemo(() => new THREE.Vector3(), [])
+  // On phones the block is wider than the screen. A label near the edge fades out
+  // instead of being cut in half.
+  useFrame(({ camera, size }) => {
+    const el = btn.current
+    if (!el) return
+    let o = 1
+    if (size.width < 820 && useStore.getState().section === 'home') {
+      p.set(...s.anchor).project(camera)
+      o = clamp((0.86 - Math.abs(p.x)) / 0.2, 0, 1)
+    }
+    el.style.opacity = o === 1 ? '' : o.toFixed(2)
+    el.style.pointerEvents = o < 0.4 ? 'none' : ''
+  })
   return (
     <Html position={s.anchor} center zIndexRange={[20, 0]}>
       <button
+        ref={btn}
         type="button"
         className={`hotspot ${home ? '' : 'is-hidden'} ${hot ? 'is-hot' : ''}`}
         tabIndex={home ? 0 : -1}

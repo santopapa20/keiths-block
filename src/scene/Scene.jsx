@@ -63,10 +63,14 @@ export default function Scene() {
   const setTier = useStore((s) => s.setTier)
   const locked = useStore((s) => s.qualityLocked)
   const full = tier === 2
+  // Phones have very dense screens: drawn at one canvas pixel per CSS pixel the scene looks blocky,
+  // and at phone sizes the extra pixels are cheap. Bigger screens keep the lighter setting.
+  const phone = typeof window !== 'undefined' && window.innerWidth < 820
+  const dpr = phone ? (tier === 0 ? [1, 1.5] : [1, 2]) : full ? [1, 1.5] : 1
   return (
     <Canvas
       shadows
-      dpr={full ? [1, 1.5] : 1}
+      dpr={dpr}
       camera={{ fov: 30, near: 0.5, far: 900, position: [0, 46, 78] }}
       gl={{ antialias: false, powerPreference: 'high-performance' }}
     >

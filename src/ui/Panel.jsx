@@ -225,11 +225,16 @@ export default function Panel() {
 
   // Keep showing the last section while the panel slides away.
   const [shown, setShown] = useState('about')
+  // Phones: the panel is a bottom sheet. It opens at half height so the scene stays visible,
+  // and the grip (tap, or swipe the header up or down) stretches it to full height for reading.
+  const [tall, setTall] = useState(false)
+  const swipe = useRef(null)
   const body = useRef()
   const panel = useRef()
   useEffect(() => {
     if (open) {
       setShown(section)
+      setTall(false)
       body.current?.scrollTo({ top: 0 })
       panel.current?.focus({ preventScroll: true }) // keyboard and screen-reader users land in the panel
     }
@@ -240,8 +245,23 @@ export default function Panel() {
   const index = STOPS.findIndex((x) => x.id === shown)
 
   return (
-    <aside ref={panel} tabIndex={-1} aria-label={s.label} className={`panel ${open ? 'is-open' : ''}`} aria-hidden={!open} inert={!open}>
-      <header className="panel__head">
+    <aside ref={panel} tabIndex={-1} aria-label={s.label} className={`panel ${open ? 'is-open' : ''} ${tall ? 'is-tall' : ''}`} aria-hidden={!open} inert={!open}>
+      <button type="button" className="panel__grip" onClick={() => setTall((t) => !t)} aria-expanded={tall} aria-label={tall ? 'Shrink the panel to see the scene' : 'Expand the panel'}>
+        <i />
+      </button>
+      <header
+        className="panel__head"
+        onTouchStart={(e) => {
+          swipe.current = e.touches[0].clientY
+        }}
+        onTouchEnd={(e) => {
+          if (swipe.current === null) return
+          const dy = e.changedTouches[0].clientY - swipe.current
+          swipe.current = null
+          if (dy < -28) setTall(true)
+          else if (dy > 28) setTall(false)
+        }}
+      >
         <div>
           <p className="panel__tag">{s.tag}</p>
           <h2>{s.label}</h2>
