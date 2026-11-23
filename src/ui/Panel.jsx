@@ -94,7 +94,14 @@ function Projects() {
     <div className="works">
       {projects.map((p) => (
         <article key={p.title} className="work">
-          {p.image && <img src={asset(p.image)} alt="" loading="lazy" />}
+          {p.image &&
+            (p.link ? (
+              <a className="work__shot" href={p.link} target="_blank" rel="noreferrer" aria-label={`Open the ${p.title} live demo`}>
+                <img src={asset(p.image)} alt={`Screenshot of ${p.title}`} loading="lazy" />
+              </a>
+            ) : (
+              <img src={asset(p.image)} alt={`Screenshot of ${p.title}`} loading="lazy" />
+            ))}
           <h3>{p.title}</h3>
           <p>{p.description}</p>
           {p.tech?.length > 0 && (
@@ -104,10 +111,19 @@ function Projects() {
               ))}
             </ul>
           )}
-          {p.link && (
-            <a className="link" href={p.link} target="_blank" rel="noreferrer">
-              View project →
-            </a>
+          {(p.link || p.repo) && (
+            <div className="work__links">
+              {p.link && (
+                <a className="btn btn--small" href={p.link} target="_blank" rel="noreferrer">
+                  Live demo →
+                </a>
+              )}
+              {p.repo && (
+                <a className="btn btn--small btn--ghost" href={p.repo} target="_blank" rel="noreferrer">
+                  Source code
+                </a>
+              )}
+            </div>
           )}
         </article>
       ))}

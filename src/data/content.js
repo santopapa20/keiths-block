@@ -79,17 +79,30 @@ export const experience = [
 
 // ─────────────────────────────────────────────────────────────
 //  YOUR WORKS GO HERE. While this list is empty the site shows
-//  the "opening soon" storefront. Add entries like:
+//  the "opening soon" storefront. The first entry is the one named
+//  on the storefront window. Add entries like:
 //
 //  {
 //    title: 'My App',
 //    description: 'One or two sentences about what it does.',
 //    tech: ['Spring Boot', 'React'],
 //    image: 'works/my-app.png',      // file inside /public (optional)
-//    link: 'https://github.com/...', // optional
+//    link: 'https://...',            // live demo (optional)
+//    repo: 'https://github.com/...', // source code (optional)
 //  },
 // ─────────────────────────────────────────────────────────────
-export const projects = []
+export const projects = [
+  {
+    title: 'Sakay Sugbo',
+    // wording taken from the project's own README
+    description:
+      'A Cebu jeepney route finder on a 3D map of the city. Tell it where you are and where you are going; it tells you which jeepney code to ride, where to board, and where to change.',
+    tech: ['React', 'TypeScript', 'MapLibre GL', 'Java', 'Spring Boot', 'MySQL'],
+    image: 'works/sakay-sugbo.webp',
+    link: 'https://santopapa20.github.io/sakay-sugbo/',
+    repo: 'https://github.com/santopapa20/sakay-sugbo',
+  },
+]
 
 export const education = {
   school: 'Cebu Institute of Technology – University',

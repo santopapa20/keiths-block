@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import { useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { env, useStore } from '../../store.js'
+import { projects } from '../../data/content.js'
 import { GlowMat, Label, Neon, NightLight, rng } from '../kit.jsx'
 import { brickSet, glassTex, plasterSet, shutterSet, woodTex } from '../tex.js'
 import { ACUnit, Awning, B, Contact, Cy, Detail, Door, GOLD, Pipe, RB, STEEL, Shell, Sp, Tex, Trophy, Vent, WallLamp, Win } from './parts.jsx'
@@ -259,6 +260,9 @@ export function Apartment() {
  * (that building draws its own "COMING SOON" paper). With storefront.glb, the sign board is lower
  * and the papered window is blank, so the neon moves down and the window lettering is drawn here.
  */
+/** What the paper in the storefront window says: the first project once there is one. */
+const WINDOW_SIGN = projects.length ? ['NOW SHOWING', projects[0].title.toLowerCase()] : ['COMING SOON', 'new work dropping here']
+
 export function StorefrontSigns() {
   const tripo = useStore((s) => s.modelStatus.storefront === 'ready')
   if (!tripo) {
@@ -274,10 +278,10 @@ export function StorefrontSigns() {
         PROJECTS
       </Neon>
       <Label position={[-0.85, 1.5, 3.08]} size={0.3} color="#1c1712">
-        COMING SOON
+        {WINDOW_SIGN[0]}
       </Label>
       <Label position={[-0.85, 1.16, 3.08]} size={0.14} color="#5a4d3c" font="marker">
-        new work dropping here
+        {WINDOW_SIGN[1]}
       </Label>
     </group>
   )
@@ -293,10 +297,10 @@ export function Storefront() {
       <B s={[3.26, 2.16, 0.12]} position={[-0.85, 1.5, 3.02]} c="#1e1915" ns />
       <B s={[3, 1.9, 0.04]} position={[-0.85, 1.5, 3.075]} c="#d8cdb0" o={{ roughness: 1 }} ns />
       <Label position={[-0.85, 1.76, 3.1]} size={0.46} color="#1c1712">
-        COMING SOON
+        {WINDOW_SIGN[0]}
       </Label>
       <Label position={[-0.85, 1.26, 3.1]} size={0.2} color="#5a4d3c" font="marker">
-        new work dropping here
+        {WINDOW_SIGN[1]}
       </Label>
       {[
         [-2.2, 2.33, 0.5],

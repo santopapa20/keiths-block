@@ -1,5 +1,7 @@
 // Each stop on the block: where the camera sits (cam), what it looks at (look),
 // and where the floating label hangs (anchor).
+import { projects } from './content.js'
+
 export const SECTIONS = [
   { id: 'home', label: 'The Block', cam: [0, 17, 36], look: [0, 3.5, -1.2] },
   {
@@ -15,7 +17,7 @@ export const SECTIONS = [
     cam: [4.6, 2.6, 8.6], look: [2.2, 0.9, 0.2], anchor: [2.2, 2.35, 0.4],
   },
   {
-    id: 'projects', label: 'Projects', tag: 'opening soon',
+    id: 'projects', label: 'Projects', tag: projects.length ? 'now open' : 'opening soon',
     cam: [6.9, 2.8, 5.4], look: [6.25, 2.3, -4], anchor: [6.25, 5.6, -3.4],
   },
   {

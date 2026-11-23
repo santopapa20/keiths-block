@@ -2086,3 +2086,37 @@ ul {
 .is-day .certs__cup {
   color: var(--gold);
 }
+
+/* ───────────── project cards ───────────── */
+.work {
+  padding: 14px;
+}
+.work__shot {
+  display: block;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.work__shot img {
+  margin: 0;
+  border-radius: 0;
+  transition: transform 0.4s ease;
+}
+.work__shot:hover img {
+  transform: scale(1.03);
+}
+.work h3 {
+  font-size: 1.7rem;
+  line-height: 1.1;
+}
+.work p {
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+.work__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
